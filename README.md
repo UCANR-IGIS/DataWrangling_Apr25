@@ -1,5 +1,5 @@
-# Intro to R Workshop Series, October 2023
+# Data Wrangling with R
 
-Materials for a 4-part Intro to R workshop series.
+Materials for a workshop on data wrangling with R.
 
-For details and the workshop recordings, see https://ucanr-igis.github.io/IntroR_Oct23/
+For details and the workshop recordings, see <https://ucanr-igis.github.io/DataWrangling_Apr25/>

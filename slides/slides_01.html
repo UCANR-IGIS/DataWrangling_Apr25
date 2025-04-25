@@ -1,0 +1,1174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content=" April 25, 2025 Andy Lyons  " />
+  <meta name="copyright" content="<a href='../index.html' style='color:#444; margin-left:2em;'>Home</a><a href='https://ucanr-igis.github.io/DataWrangling_Apr25/' style='color:#444; margin-left:2em;'>https://ucanr-igis.github.io/DataWrangling_Apr25/</a>"/>
+  <title>Data Wrangling</title>
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+            pre > code.sourceCode { white-space: pre; position: relative; }
+            pre > code.sourceCode > span { line-height: 1.25; }
+            pre > code.sourceCode > span:empty { height: 1.2em; }
+            .sourceCode { overflow: visible; }
+            code.sourceCode > span { color: inherit; text-decoration: inherit; }
+            div.sourceCode { margin: 1em 0; }
+            pre.sourceCode { margin: 0; }
+            @media screen {
+            div.sourceCode { overflow: auto; }
+            }
+            @media print {
+            pre > code.sourceCode { white-space: pre-wrap; }
+            pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+            }
+            pre.numberSource code
+              { counter-reset: source-line 0; }
+            pre.numberSource code > span
+              { position: relative; left: -4em; counter-increment: source-line; }
+            pre.numberSource code > span > a:first-child::before
+              { content: counter(source-line);
+                position: relative; left: -1em; text-align: right; vertical-align: baseline;
+                border: none; display: inline-block;
+                -webkit-touch-callout: none; -webkit-user-select: none;
+                -khtml-user-select: none; -moz-user-select: none;
+                -ms-user-select: none; user-select: none;
+                padding: 0 4px; width: 4em;
+                color: #aaaaaa;
+              }
+            pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+            div.sourceCode
+              {   }
+            @media screen {
+            pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+            }
+            code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+            code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+            code span.at { color: #7d9029; } /* Attribute */
+            code span.bn { color: #40a070; } /* BaseN */
+            code span.bu { color: #008000; } /* BuiltIn */
+            code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+            code span.ch { color: #4070a0; } /* Char */
+            code span.cn { color: #880000; } /* Constant */
+            code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+            code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+            code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+            code span.dt { color: #902000; } /* DataType */
+            code span.dv { color: #40a070; } /* DecVal */
+            code span.er { color: #ff0000; font-weight: bold; } /* Error */
+            code span.ex { } /* Extension */
+            code span.fl { color: #40a070; } /* Float */
+            code span.fu { color: #06287e; } /* Function */
+            code span.im { color: #008000; font-weight: bold; } /* Import */
+            code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+            code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+            code span.op { color: #666666; } /* Operator */
+            code span.ot { color: #007020; } /* Other */
+            code span.pp { color: #bc7a00; } /* Preprocessor */
+            code span.sc { color: #4070a0; } /* SpecialChar */
+            code span.ss { color: #bb6688; } /* SpecialString */
+            code span.st { color: #4070a0; } /* String */
+            code span.va { color: #19177c; } /* Variable */
+            code span.vs { color: #4070a0; } /* VerbatimString */
+            code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+          </style>
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script src="lib/header-attrs-2.29/header-attrs.js"></script>
+  <link href="lib/slidy-2/styles/slidy.css" rel="stylesheet" />
+  <script src="lib/slidy-2/scripts/slidy.js"></script>
+  <script src="lib/slidy_shiny-1/slidy_shiny.js"></script>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="slidy2022.css" />
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Data Wrangling with R</h1>
+  <p class="author">
+<img src='images/2d-data-munging_645x160.png' style='width:645px; height:160px; margin-top:0.5em; margin-bottom:1em;'/><br/>April
+25, 2025<br/>Andy Lyons<br/><br/>
+  </p>
+  <p class="date"><a href='https://ucanr-igis.github.io/DataWrangling_Apr25/' style='color:darkgreen; font-size:105%; font-family:monospace;'>https://ucanr-igis.github.io/DataWrangling_Apr25/</a></p>
+</div>
+<div id="start-recording" class="slide section level1 hidetitle">
+<h1 class="hidetitle">Start Recording</h1>
+<p><br />
+</p>
+<p><br />
+</p>
+<p><img src="images/postit_bg-trans_with-note_320x320.png"
+style="display:block; margin:1em auto; border:none;" /></p>
+<p><br />
+</p>
+<script>
+w3c_slidy.mouse_click_enabled = false;
+</script>
+</div>
+<div id="about-me" class="slide section level1">
+<h1>About Me…</h1>
+<p><img src="images/anr_montage-wide_1120x520.png" /></p>
+</div>
+<div id="igis-team" class="slide section level1 hidetitle">
+<h1 class="hidetitle">IGIS Team</h1>
+<p><img src="images/about-igis_1200x670_q10.jpg" /></p>
+</div>
+<div id="some-of-my-r-work" class="slide section level1">
+<h1>Some of My R Work</h1>
+<h2 id="degday">degday</h2>
+<div class="sbs_icontext_contain">
+<div class="sbs_icontext_child">
+<p><img src="images/degday_hexlogo_v1a_104x120.png"/></p>
+</div>
+<div class="sbs_icontext_child">
+<p>Compute degree days in R<br/> <a
+href="https://ucanr-igis.github.io/degday/"
+target="_blank">https://ucanr-igis.github.io/degday/</a></p>
+</div>
+</div>
+<p><br />
+</p>
+<h2 id="uasimg">uasimg</h2>
+<div class="sbs_icontext_contain">
+<div class="sbs_icontext_child">
+<p><img src="images/uasimg_hex-logo1c_104x120.png"/></p>
+</div>
+<div class="sbs_icontext_child">
+<p>Data management utilities for drone mapping<br/> <a
+href="https://ucanr-igis.github.io/uasimg/"
+target="_blank">https://ucanr-igis.github.io/uasimg/</a></p>
+</div>
+</div>
+<p><br />
+</p>
+<h2 id="caladaptr">caladaptR</h2>
+<div class="sbs_icontext_contain">
+<div class="sbs_icontext_child">
+<p><img src="images/caladaptr-hexlogo_104x120.png"/></p>
+</div>
+<div class="sbs_icontext_child">
+<p>Bring climate data from Cal-Adapt into R using the API<br/> <a
+href="https://ucanr-igis.github.io/caladaptr/"
+target="_blank">https://ucanr-igis.github.io/caladaptr/</a></p>
+</div>
+</div>
+<p><br />
+</p>
+<h2 id="t-locoh">T-Locoh</h2>
+<div class="sbs_icontext_contain">
+<div class="sbs_icontext_child">
+<p>Homerange and spatial-temporal pattern analysis for wildlife tracking
+data<br/> <a href="http://tlocoh.r-forge.r-project.org/"
+target="_blank">http://tlocoh.r-forge.r-project.org/</a></p>
+</div>
+</div>
+<p><br />
+</p>
+<h2 id="shiny-apps">Shiny Apps</h2>
+<p>Chill Portions Under Climate Change Calculator<br />
+<a href="https://ucanr-igis.shinyapps.io/chill/" target="_blank"
+rel="noopener">https://ucanr-igis.shinyapps.io/chill/</a></p>
+<p>Drone Mission Planner for Reforestation Monitoring Protocol<br />
+<a href="https://ucanr-igis.shinyapps.io/uav_stocking_survey/"
+target="_blank">https://ucanr-igis.shinyapps.io/uav_stocking_survey/</a></p>
+<p>Stock Pond Volume Calculator<br />
+<a href="https://ucanr-igis.shinyapps.io/PondCalc/"
+target="_blank">https://ucanr-igis.shinyapps.io/PondCalc/</a></p>
+<p>Pistachio Nut Growth Calculator<br />
+<a href="https://ucanr-igis.shinyapps.io/pist_gdd/"
+target="_blank">https://ucanr-igis.shinyapps.io/pist_gdd/</a></p>
+</div>
+<div id="about-you" class="slide section level1">
+<h1>About You…</h1>
+</div>
+<div id="data-wrangling-what-do-we-mean" class="slide section level1">
+<h1>Data Wrangling: What do we mean?</h1>
+<p style="text-align:center; font-style:italic; font-weight:bold; line-height:180%;">
+<u>Whatever</u> is needed to get your data frame ready<br />
+for the function(s) you want to use for analysis and visualization.
+</p>
+<p style="font-style:italic; text-align:center;">
+Also called: data munging, data manipulation, data transformation, etc.
+</p>
+<p><img src="images/jello-cubes_400x400.jpg"
+style="display:block; margin:1em auto; border:none;" /></p>
+<p><br />
+</p>
+<h2 id="operations">Operations</h2>
+<div class="indented2">
+<p>Data wrangling often includes some combination of:</p>
+<div class="indented1 li-single compact">
+<ol style="list-style-type: decimal">
+<li>dropping columns<br />
+</li>
+<li>renaming columns<br />
+</li>
+<li>changing the order of columns<br />
+</li>
+<li>creating new columns with an expression<br />
+</li>
+<li>filtering rows<br />
+</li>
+<li>sorting rows<br />
+</li>
+<li>going from ‘long’ to ‘wide’ formats<br />
+</li>
+<li>joining data frames based on a common field<br />
+</li>
+<li>merging / stacking data frames together<br />
+</li>
+<li>splitting tables<br />
+</li>
+<li>aggregating rows into groups</li>
+<li>splitting columns into new columns / rows</li>
+</ol>
+</div>
+</div>
+<p><br />
+</p>
+</div>
+<div id="outline" class="slide section level1">
+<h1>Outline</h1>
+<div class="cardcontainer">
+<div class="card">
+<p><em>Developing a strategy</em></p>
+<ul>
+<li>What is tidy data?</li>
+<li>Working backwards</li>
+</ul>
+</div>
+<div class="card">
+<p><em>R Methods</em></p>
+<ul>
+<li>Functions and piping</li>
+<li>Importing data</li>
+<li>Subsetting rows and columns</li>
+<li>Creating new columns</li>
+<li>Type conversions: text, dates, numbers, units</li>
+<li>Reshaping data</li>
+<li>Dealing with missing values</li>
+<li>Joinging tables<br />
+</li>
+<li>Grouping and summarizing rows</li>
+</ul>
+</div>
+<div class="card">
+<p><em>More advanced tasks</em></p>
+<ul>
+<li>Wrangling really large data</li>
+<li>Flattening nested data</li>
+<li>Splitting flat data into relational tables</li>
+<li>Reading and writing databases</li>
+<li>??</li>
+</ul>
+</div>
+</div>
+<p><br />
+</p>
+</div>
+<div id="but-wait.-cant-chatgpt-just-take-care-of-this-for-me"
+class="slide section level1 subsection">
+<h1 class="subsection"><span class="subsecttitle-pre"></span><span
+class="subsecttitle-pre" style="line-height: normal;">But wait.
+</br></br/>Can’t ChatGPT just take<br/>care of this <br/>for
+me?</span></h1>
+</div>
+<div id="learning-with-genai" class="slide section level1 hidetitle">
+<h1 class="hidetitle">Learning with GenAI</h1>
+<img src="images/cetinkaya-rundel-post-ai-tools_794x393.png"
+class="centerme" style="border: 1px solid gray; padding:5px;" />
+<center>
+<a href="https://www.tidyverse.org/blog/2025/04/learn-tidyverse-ai/"
+class="uri">https://www.tidyverse.org/blog/2025/04/learn-tidyverse-ai/</a>
+</center>
+<p><em>Highlights</em></p>
+<div class="compact">
+<ul>
+<li>ChatGPT will give you code.<br />
+</li>
+<li>It may or may not work.<br />
+</li>
+<li>It may or may not be good code (probably not).<br />
+</li>
+<li>You should always cross check it with the documentation.<br />
+</li>
+</ul>
+</div>
+<p><br />
+</p>
+<p><em>Suggestions for Using ChatGPT to <u>Learn</u> Data
+Wrangling</em></p>
+<div class="compact">
+<ul>
+<li>“Use code completion tools sparingly if you’re a new user.”<br />
+</li>
+<li>ChatGPT is good for getting starter code, discovering functions,
+arguments, solving a simple, well-defined problem, etc.<br />
+</li>
+<li>Break a task into smaller steps.<br />
+</li>
+<li>Don’t depend on ChatGPT to create a workflow or chain</li>
+<li>Be wary of code you don’t understand.<br />
+</li>
+<li>R has great documentation &amp; tutorials online - take advantage of
+it.<br />
+</li>
+</ul>
+</div>
+</div>
+<div id="planning-your-data-wrangling-strategy"
+class="slide section level1 subsection">
+<h1 class="subsection"><span class="subsecttitle-pre"></span><span
+class="subsecttitle-main">Planning Your Data Wrangling
+Strategy</span></h1>
+</div>
+<div id="what-is-tidy-data" class="slide section level1">
+<h1>What is “tidy data”?</h1>
+<p>R functions like tidy data!</p>
+<p><img src="images/tidy_data_1260x435x256.png"
+style="display:block; margin:1em auto; border:none;" /></p>
+</div>
+<div id="are-these-data-tidy" class="slide section level1">
+<h1>Are these data ‘tidy’?</h1>
+<p><img src="images/are-these-tidy_1286x398x256.png"
+style="display:block; margin:1em auto; border:none;" /></p>
+</div>
+<div id="r-fundamentals" class="slide section level1 subsection">
+<h1 class="subsection"><span class="subsecttitle-pre"></span><span
+class="subsecttitle-main">R Fundamentals</span></h1>
+</div>
+<div id="functions" class="slide section level1">
+<h1>Functions</h1>
+<p>The keys to R’s superpowers are <strong>functions</strong>! There are
+<strong>four things</strong> you need to know to use a function:</p>
+<style>img.stackme {position:absolute; top:0; left:0;}</style>
+<div style='position:relative; border:none; height:450px;width:901px; margin:0 auto; '>
+<img src="images/foo_01.png"/>
+<img src="images/foo_02.png" class="incremental stackme"/>
+<img src="images/foo_03.png" class="incremental stackme"/>
+<img src="images/foo_04.png" class="incremental stackme"/>
+<img src="images/foo_05.png" class="incremental stackme"/>
+</div>
+<p><br />
+</p>
+</div>
+<div id="what-do-functions-return" class="slide section level1">
+<h1>What Do Functions Return?</h1>
+<div class="indented2 li-single">
+<ul class="incremental">
+<li>numbers<br />
+</li>
+<li>dates<br />
+</li>
+<li>text<br />
+</li>
+<li>data frames and matrices<br />
+</li>
+<li>spatial data<br />
+</li>
+<li>plots<br />
+</li>
+<li>trained regression models<br />
+</li>
+<li>HTML widgets<br />
+</li>
+<li>another function that returns a color ramp<br />
+</li>
+<li>a drone image collection metadata record<br />
+</li>
+<li><span style="color:crimson;">⇒ almost anything you can think of can
+be returned by a function!!</span></li>
+<li><span style="color:crimson;">⇒ anything returned by a function can
+also be saved to an object</span></li>
+</ul>
+</div>
+</div>
+<div id="which-function-should-i-use" class="slide section level1">
+<h1>Which function should I use?</h1>
+<center>
+<table>
+<tbody>
+<tr>
+<td style="text-align:right; font-style:italic; padding:10px; border:none;">
+Finding the right R function, half the battle is.<br><br>- Jedi MasteR
+Yoda
+</td>
+<td style="padding:5px;">
+<img src="images/yoda_bg-white_200x170.jpg" style="width:200px; height:170px;">
+</td>
+</tr>
+</tbody>
+</table>
+</center>
+<p><strong>Ask your friends</strong></p>
+<p><strong>Ask Google / ChatGPT</strong></p>
+<p><a
+href="https://rstudio.github.io/cheatsheets/"><strong>Cheatsheets!</strong></a></p>
+</div>
+<div id="function-help" class="slide section level1">
+<h1>Function Help</h1>
+<p>Every function has a help page. To get to it enter <code>?</code>
+followed by the name of the function (without parentheses):</p>
+<div class="indented2 indented2r">
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>?rnorm</span></code></pre></div>
+</div>
+<p><img src="images/rnorm_help_16cols_930x690.png"
+style="display:block; margin:1em auto; border:1px solid grey;" /></p>
+<p><br />
+</p>
+</div>
+<div id="function-arguments" class="slide section level1">
+<h1>Function Arguments</h1>
+<p>Most functions take arguments. Arguments can be <em>required</em> or
+<em>optional</em> (i.e. have a default value).</p>
+<p>See the function’s help page to determine which arguments are
+expected. Example:</p>
+<p><img src="images/function-help-args_560x290x256.png"
+style="display:block; margin:1em auto; border:1px solid grey;" /></p>
+<div style="text-align:center;">
+<p><code>x</code> and <code>size</code> have no default value → they are
+<em>required</em></p>
+<p><code>replace</code> and <code>prob</code> have default values → they
+are <em>optional</em></p>
+</div>
+<p><br />
+</p>
+<h2 id="to-name-or-not-to-name-your-arguments-that-is-the-question.">To
+name or not to name your arguments? That is the question.</h2>
+<p>All arguments have names. You can explicitly name arguments when
+calling a function as follows:</p>
+<div class="indented2 indented2r">
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="fl">0.3</span>)</span></code></pre></div>
+</div>
+<p><br />
+</p>
+<p>Benefits of naming your arguments:</p>
+<div class="indented2 li-single">
+<ol style="list-style-type: decimal">
+<li>Helps you remember what each argument is<br />
+</li>
+<li>You can enter then in any order<br />
+</li>
+<li>You can skip arguments if you’re happy with the default value</li>
+</ol>
+</div>
+<p><br />
+</p>
+<p>But you can <em>omit argument names</em> if you pass them <strong>in
+the order expected</strong> and <strong>don’t skip any</strong>.</p>
+<div class="indented2 indented2r">
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">500</span>, <span class="dv">50</span>, <span class="dv">3</span>)  <span class="do">## generate 500 normally distributed random</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>                   <span class="do">## numbers with a mean of 50 and stand dev = 3.</span></span></code></pre></div>
+</div>
+<p><br />
+</p>
+</div>
+<div id="piping" class="slide section level1">
+<h1>Piping</h1>
+<p><img src="images/piping_200x44x256.png"
+style="float:right; margin-top:-2em;" /></p>
+<p><strong>Piping syntax</strong> is an alternative way of writing
+arguments into functions.</p>
+<style type="text/css">
+span.inline-code {
+  font-family: courier, monospace;
+  font-weight: bold;
+  color: darkgreen;
+}
+</style>
+<p>With piping, you use the pipe operator <span
+class="inline-code">|&gt;</span> (or <span
+class="inline-code">%&gt;%</span>) to ‘feed’ the result of one function
+into the next function.</p>
+<p>Piping allows the results of one function to be passed as the
+<strong>first argument</strong> of the next function. Hence a series of
+commands to be written like a sentence.</p>
+<h2 id="example">Example</h2>
+<p>Consider the expression:</p>
+<p style="text-align:center; font-family:Consolas, monospace; font-size:120%;">
+zoo(moo(boo(foo(99)),n=4))
+</p>
+<div style='position:relative; border:none; height:192px;width:797px; margin:0 auto; '>
+<img src="images/functions-piping_001.png" class="incremental stackme"/>
+<img src="images/functions-piping_002.png" class="incremental stackme"/>
+<img src="images/functions-piping_003.png" class="incremental stackme"/>
+<img src="images/functions-piping_004.png" class="incremental stackme"/>
+<img src="images/functions-piping_005.png" class="incremental stackme"/>
+</div>
+<p><br />
+</p>
+</div>
+<div id="piping-tips-and-tricks" class="slide section level1">
+<h1>Piping Tips and Tricks</h1>
+<p>Keyboard shortcut for inserting the pipe operator:
+<code>ctrl + shift + m</code></p>
+<div class="indented2">
+<p>You can tell RStudio which pipe to insert under Global Options
+&gt;&gt; Code</p>
+<div class="indented2">
+<p><span class="inline-code"><code>|&gt;</code></span> (‘native’ pipe
+introduced R4.0)</p>
+<p><span class="inline-code"><code>%&gt;%</code></span> (from
+<code>magrittr</code> package)</p>
+</div>
+</div>
+<p><br />
+</p>
+<p>To split a chain of functions across <em>multiple lines</em>, end
+each line with a pipe operator:</p>
+<div class="indented2 indented2r">
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="fl">0.1</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  <span class="fu">log</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="fu">sum</span>() </span></code></pre></div>
+<pre><code>## [1] 141.4023</code></pre>
+</div>
+<p><br />
+</p>
+<p>If the receiving function requires additional arguments, just add
+them <em>starting with the 2nd argument</em> (or use named
+arguments):</p>
+<div class="indented2 indented2r">
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">5</span>) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 0.47 0.90 0.49 0.46 0.49</code></pre>
+</div>
+<p><br />
+</p>
+</div>
+<div id="same-function-name-different-packages"
+class="slide section level1">
+<h1>Same Function Name, Different Packages</h1>
+<p>Occasionally two or more packages will have different functions that
+use the same name. <img src="images/sad-face-32x32.png" /></p>
+<p>When this happens, R will use whichever one was loaded first.</p>
+<p>Best practice: use the package name and the <code>::</code> reference
+to specify which package a function is from.</p>
+<div class="indented1 indented1r">
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> sp<span class="sc">::</span><span class="fu">over</span>()</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> grDevices<span class="sc">::</span><span class="fu">over</span>()</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>y <span class="ot">&lt;-</span> raster<span class="sc">::</span><span class="fu">select</span>()</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>y <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>()</span></code></pre></div>
+</div>
+<div class="tip">
+<p>When you use the <em><code>package_name::function_name</code></em>
+syntax, you don’t actually have to first load the package with
+<tt>library()</tt>.</p>
+</div>
+<p><br />
+</p>
+<div class="tip">
+<p><strong>Resolving Name Conflicts with the <code>conflicted</code>
+Package</strong></p>
+<p>When you call a function that exists in multiple packages, R uses
+whichever package was loaded first.</p>
+<p>The <code>conflicted</code> package helps you avoid problems with
+duplicate function names, by specifying which one to prioritize <em>no
+matter what order</em> they were loaded.</p>
+<div class="indented1 indented1r">
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">library</span>(conflicted)</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="co"># Set conflict preference</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="fu">conflict_prefer</span>(<span class="st">&quot;filter&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="fu">conflict_prefer</span>(<span class="st">&quot;count&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="fu">conflict_prefer</span>(<span class="st">&quot;select&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="co"># From here on out, anytime we call select() or filter(), R will</span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="co"># always use the dplyr version.</span></span></code></pre></div>
+</div>
+</div>
+<p><br />
+</p>
+</div>
+<div id="tip-1data-wrangling-starts-with-importing"
+class="slide section level1 subsection">
+<h1 class="subsection"><span class="subsecttitle-pre">Tip #1</span><span
+class="subsecttitle-main">Data Wrangling Starts with
+Importing</span></h1>
+</div>
+<div id="better-ways-to-import-tabular-data"
+class="slide section level1">
+<h1>Better Ways to Import Tabular Data</h1>
+<p><img src="images/readr_logo_121x140.png"
+style="margin-left:2em;" /> <img src="images/readxl-logo_121x140.png"
+style="margin-left:2em;" /> <img
+src="images/googlesheets4_140x121.png" style="margin-left:2em;" /></p>
+<p><br />
+</p>
+<p>These packages allow you to:</p>
+<div class="indented2 li-single">
+<ul>
+<li>import tabular data in different formats<br />
+</li>
+<li>skip rows that don’t actually contain data<br />
+</li>
+<li>specify whether the file contains a header<br />
+</li>
+<li>rename columns as part of the importing<br />
+</li>
+<li>specify the data type for each column</li>
+</ul>
+</div>
+<p><br />
+</p>
+<p>Example:</p>
+<div class="indented2 indented2r">
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>my_tbl <span class="ot">=</span> <span class="fu">read_xlsx</span>(<span class="at">path =</span> <span class="st">&quot;plot_data.xlsx&quot;</span>, </span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>                   <span class="at">sheet =</span> <span class="st">&quot;Sheet2&quot;</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>                   <span class="at">skip =</span> <span class="dv">3</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>                   <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">&quot;plot_num&quot;</span>, <span class="st">&quot;date&quot;</span>, <span class="st">&quot;species&quot;</span>, <span class="st">&quot;count&quot;</span>),</span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>                   <span class="at">col_types =</span> <span class="fu">c</span>(<span class="st">&quot;text&quot;</span>, <span class="st">&quot;date&quot;</span>, <span class="st">&quot;text&quot;</span>, <span class="st">&quot;integer&quot;</span>))</span></code></pre></div>
+</div>
+<p><br />
+</p>
+<div class="centerblock">
+<p><a
+href="https://rawgit.com/rstudio/cheatsheets/master/data-import.pdf"
+target="_blank" rel="noopener"><img
+src="images/data-import-cheatsheet_600x460x256.png"
+style="border:1px solid grey;" /></a></p>
+</div>
+<p><br />
+</p>
+</div>
+<div id="data-wrangling-with-dplyr" class="slide section level1">
+<h1>Data Wrangling with <code>dplyr</code></h1>
+<p><img src="images/dplyr-logo_86x100x256.png"
+style="float:right;" /></p>
+<p>An alternative (usually better) way to wrangle data frames than base
+R.</p>
+<p>Part of the <a href="https://www.tidyverse.org"
+target="_blank">tidyverse</a>.</p>
+<p>Best way to familiarize yourself - explore the <a
+href="https://posit.co/wp-content/uploads/2022/10/data-transformation-1.pdf"
+target="_blank">cheat sheet</a>:</p>
+<div class="centerblock">
+<p><a
+href="https://posit.co/wp-content/uploads/2022/10/data-transformation-1.pdf"
+target="_blank" rel="noopener"><img
+src="images/data-transformation-600x464.png"
+style="border:1px solid grey;" /></a></p>
+</div>
+<p><br />
+</p>
+</div>
+<div id="popular-dplyr-functions" class="slide section level1">
+<h1>Popular <code>dplyr</code> Functions</h1>
+<h2 id="row-and-column-manipulations">Row and Column Manipulations</h2>
+<table class="tbl_compact">
+<tbody>
+<tr>
+<td style="text-align:left;width: 12em; ">
+subset rows
+</td>
+<td style="text-align:left;font-family: monospace;">
+filter(), slice()
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 12em; ">
+order rows
+</td>
+<td style="text-align:left;font-family: monospace;">
+arrange()
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 12em; ">
+pick column(s)
+</td>
+<td style="text-align:left;font-family: monospace;">
+select(), pull()
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 12em; ">
+add new columns
+</td>
+<td style="text-align:left;font-family: monospace;">
+mutate()
+</td>
+</tr>
+</tbody>
+</table>
+<!----- taken out for another slide:
+, "join data frames on a column", "left_join(), right_join(), inner_join()", "stack data frame", "bind_rows()"
+----->
+<p><br />
+</p>
+<h2 id="chaining-dplyr-functions">Chaining dplyr functions</h2>
+<div class="indented2 indented2r">
+<p>Most <code>dplyr</code> functions <em>take a tibble</em> as the first
+argument , and <em>return a tibble</em>.</p>
+<p>This makes them very <em>pipe friendly</em>.</p>
+</div>
+<p><br />
+</p>
+</div>
+<div id="example-1" class="slide section level1">
+<h1>Example</h1>
+<p>Look at the <em>storms</em> tibble:</p>
+<div class="indented2 indented2r">
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="fu">head</span>(storms)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 13
+##   name   year month   day  hour   lat  long status       category  wind pressure
+##   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;           &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
+## 1 Amy    1975     6    27     0  27.5 -79   tropical de…       NA    25     1013
+## 2 Amy    1975     6    27     6  28.5 -79   tropical de…       NA    25     1013
+## 3 Amy    1975     6    27    12  29.5 -79   tropical de…       NA    25     1013
+## 4 Amy    1975     6    27    18  30.5 -79   tropical de…       NA    25     1013
+## 5 Amy    1975     6    28     0  31.5 -78.8 tropical de…       NA    25     1012
+## 6 Amy    1975     6    28     6  32.4 -78.7 tropical de…       NA    25     1012
+## # ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,
+## #   hurricane_force_diameter &lt;int&gt;</code></pre>
+</div>
+<p><br />
+</p>
+<p><em>Filter out only the records for category 3 or higher storms
+</em></p>
+<div class="indented2 indented2r">
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>storms <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>  <span class="fu">select</span>(name, year, month, category) <span class="sc">|&gt;</span>     <span class="do">## select the columns we need</span></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>  <span class="fu">filter</span>(category <span class="sc">&gt;=</span> <span class="dv">3</span>)                      <span class="do">## select just the rows we want</span></span></code></pre></div>
+<pre><code>## # A tibble: 1,262 × 4
+##    name      year month category
+##    &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
+##  1 Caroline  1975     8        3
+##  2 Caroline  1975     8        3
+##  3 Eloise    1975     9        3
+##  4 Eloise    1975     9        3
+##  5 Gladys    1975    10        3
+##  6 Gladys    1975    10        3
+##  7 Gladys    1975    10        4
+##  8 Gladys    1975    10        4
+##  9 Gladys    1975    10        3
+## 10 Belle     1976     8        3
+## # ℹ 1,252 more rows</code></pre>
+</div>
+<div class="protip">
+<p><code>dplyr</code> functions generally allow you to enter column
+names without quotes.</p>
+</div>
+<p><br />
+</p>
+</div>
+<div id="palmer-penguins" class="slide section level1">
+<h1>Palmer Penguins</h1>
+<p>The <a href="https://allisonhorst.github.io/palmerpenguins/"
+target="_blank" rel="noopener">Palmer Penguins</a> dataset contains
+field data for three species of penguins.</p>
+<center>
+<img src="images/penguiin-culmen-depth_310x200.png" /> <img
+src="images/palmer-penguins-logo_130x150.png" />
+</center>
+<p><br />
+</p>
+</div>
+<div id="exercise-1" class="slide section level1">
+<h1>Exercise 1</h1>
+<p>In this exercise, we will:</p>
+<div class="indented1">
+<ol style="list-style-type: decimal">
+<li><p>Import some messy data from Excel<br />
+</p></li>
+<li><p>Wrangle the Penguins!</p></li>
+</ol>
+<div style="margin-left:4em;">
+<ul>
+<li>Subset columns<br />
+</li>
+<li>Compute new columns<br />
+</li>
+<li>Sort and subset rows</li>
+</ul>
+</div>
+</div>
+<p>This exercise will be done in an <em>R Notebook</em>!</p>
+<p><br />
+</p>
+<div style="text-align:center; font-family:monospace; font-size:150%;">
+<p><a
+href="https://posit.cloud/content/10255792">https://posit.cloud/content/10255792</a></p>
+</div>
+<p><br />
+</p>
+</div>
+<div id="break" class="slide section level1">
+<h1>Break!</h1>
+<p><img src="images/stretch-break-1130x590x256.png"
+style="display:block; margin:1em auto; border:none;" /></p>
+</div>
+<div id="dplyr-pro-tips" class="slide section level1">
+<h1><code>dplyr</code> Pro Tips</h1>
+<h2 id="advanced-select">Advanced <code>select()</code></h2>
+<table class="tbl_compact">
+<tbody>
+<tr>
+<td style="text-align:left;width: 16em; font-family: monospace;">
+select(-age)
+</td>
+<td style="text-align:left;">
+Select all columns <em>except</em> age
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 16em; font-family: monospace;">
+select(fname:grade)
+</td>
+<td style="text-align:left;">
+Select all columns between <code>fname</code> and <code>grade</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 16em; font-family: monospace;">
+select(starts_with(“Sepal”))
+</td>
+<td style="text-align:left;">
+Select all columns that start with ‘Sepal’<br>(see also
+<code>ends_width()</code>, <code>contains()</code>, and
+<code>matches()</code>
+</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<h2 id="renaming-columns">Renaming columns</h2>
+<div class="indented2" style="font-family:monospace;">
+<p>my_dataframe |&gt; rename(fname = First, lname = Last)</p>
+<p>my_dataframe |&gt; select(fname = First, lname = Last, term, grade,
+passed)</p>
+</div>
+<p><br />
+</p>
+</div>
+<div id="joining-tables" class="slide section level1">
+<h1>Joining Tables</h1>
+<h2 id="dplyr-join-functions"><code>dplyr</code> join functions</h2>
+<table class="tbl_compact">
+<tbody>
+<tr>
+<td style="text-align:left;width: 12em; ">
+join data frames on a column
+</td>
+<td style="text-align:left;font-family: monospace;">
+left_join(), right_join(), inner_join()
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 12em; ">
+stack data frames
+</td>
+<td style="text-align:left;font-family: monospace;">
+bind_rows()
+</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<h2 id="join-tables-on-a-common-column">Join tables on a common
+column</h2>
+<p><img src="images/join-table_890x220x256.png"
+style="display:block; margin:0 auto;" /></p>
+<p><img src="images/table_join01_820x442x256.png" /></p>
+<p>To join two data frames based on a common column, you can use:</p>
+<div class="indented1">
+<p><tt><strong>left_join(<em>x</em>, <em>y</em>,
+<em>by</em>)</strong></tt></p>
+</div>
+<p>where <em>x</em> and <em>y</em> are data frames, and <em>by</em> is
+the name of a column they have in common.</p>
+<div class="tip">
+<p>If there is only one column in common, and if it has the same name in
+both data frames, you can omit the <em>by</em> argument.</p>
+<p>If the common column is named differently in the two data frames, you
+can deal with that by passing a named vector as the <em>by</em>
+argument. See below.</p>
+</div>
+<!--- tip --->
+<p>To illustrate a table join, we’ll first import a csv with some fake
+data about the genetics of different iris species:</p>
+<div class="indented2 indented2r">
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># Create a data frame with additional info about the three IRIS species</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>iris_genetics <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Species=</span><span class="fu">c</span>(<span class="st">&quot;setosa&quot;</span>, <span class="st">&quot;versicolor&quot;</span>, <span class="st">&quot;virginica&quot;</span>),</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>                          <span class="at">num_genes =</span> <span class="fu">c</span>(<span class="dv">42000</span>, <span class="dv">41000</span>, <span class="dv">43000</span>),</span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>                          <span class="at">prp_alles_recessive =</span> <span class="fu">c</span>(<span class="fl">0.8</span>, <span class="fl">0.76</span>, <span class="fl">0.65</span>))</span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>iris_genetics</span></code></pre></div>
+<pre><code>##      Species num_genes prp_alles_recessive
+## 1     setosa     42000                0.80
+## 2 versicolor     41000                0.76
+## 3  virginica     43000                0.65</code></pre>
+</div>
+<p>We can join these additional columns to the iris data frame with
+<code>left_join()</code>:</p>
+<div class="indented2 indented2r">
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>  <span class="fu">left_join</span>(iris_genetics, <span class="at">by =</span> <span class="st">&quot;Species&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species num_genes
+## 1           5.1         3.5          1.4         0.2  setosa     42000
+## 2           4.9         3.0          1.4         0.2  setosa     42000
+## 3           4.7         3.2          1.3         0.2  setosa     42000
+## 4           4.6         3.1          1.5         0.2  setosa     42000
+## 5           5.0         3.6          1.4         0.2  setosa     42000
+## 6           5.4         3.9          1.7         0.4  setosa     42000
+## 7           4.6         3.4          1.4         0.3  setosa     42000
+## 8           5.0         3.4          1.5         0.2  setosa     42000
+## 9           4.4         2.9          1.4         0.2  setosa     42000
+## 10          4.9         3.1          1.5         0.1  setosa     42000
+##    prp_alles_recessive
+## 1                  0.8
+## 2                  0.8
+## 3                  0.8
+## 4                  0.8
+## 5                  0.8
+## 6                  0.8
+## 7                  0.8
+## 8                  0.8
+## 9                  0.8
+## 10                 0.8</code></pre>
+</div>
+<p><br />
+</p>
+<div class="infobox">
+<p>If you need to join tables on multiple columns, add additional column
+names to the <code>by</code> argument.</p>
+<p>Join columns must be the same data type (i.e., both numeric or both
+character).</p>
+<p>There are several variants of <code>left_join()</code>, the most
+common being <strong><code>right_join()</code></strong> and
+<strong><code>inner_join()</code></strong>. See help for details.</p>
+</div>
+<!--- info-box --->
+<h2 id="joining-tables-when-the-column-name-is-different">Joining Tables
+When the Column Name is Different</h2>
+<p>If the join column is named differently in the two tables, you can
+pass a named character vector as the <code>by</code> argument. A named
+vector is a vector whose elements have been assigned names. You can
+construct a named vector with <code>c()</code>.</p>
+<p><img src="images/table_join02_820x442x256.png" /></p>
+<p>For example if the join column was named ‘<em>SpeciesName</em>’ in
+<em>x</em>, and just ‘<em>Species</em>’ in <em>y</em>, your expression
+would be:</p>
+<div class="indented2">
+<strong><code>left_join(x, y, by = c("SpeciesName" = "Species"))</code></strong>
+</div>
+<p><br />
+</p>
+</div>
+<div id="stacking-or-merging-data-frames" class="slide section level1">
+<h1>Stacking or Merging Data Frames</h1>
+<p><img src="images/bind_rows_520x220x256.png"
+style="display:block; margin:0 auto;" /></p>
+<div class="indented2">
+<p><strong><code>bind_rows(x, y)</code></strong></p>
+<p>where <strong><code>x</code></strong> and
+<strong><code>y</code></strong>:</p>
+<div class="indented1">
+<ul>
+<li>are data frames</li>
+<li>have the <em>exact</em> same column structure (names, order, &amp;
+class)</li>
+<li>you can add more than two data frames</li>
+</ul>
+</div>
+</div>
+<p><br />
+</p>
+</div>
+<div id="reshaping-data" class="slide section level1">
+<h1>Reshaping Data</h1>
+<p><img src="images/tidyr_240x277.png"
+style="width:140px; float:right;" /></p>
+<p><em>Reshaping</em> data includes:</p>
+<div class="compact">
+<ul>
+<li>turning rows into columns (aka pivot tables, cross tab query)<br />
+</li>
+<li>turning columns into rows</li>
+</ul>
+</div>
+<p>The go-to Tidyverse package for reshaping data frames is <a
+href="https://tidyr.tidyverse.org" target="_blank"
+rel="noopener"><tt><strong>tidyr</strong></tt></a></p>
+<p><br />
+</p>
+<div class="centerblock">
+<p><a href="https://rawgit.com/rstudio/cheatsheets/master/tidyr.pdf"
+target="_blank" rel="noopener"><img
+src="images/tidyr_cheatsheet_600x464x256.png"
+style="border:1px solid grey;" /></a></p>
+</div>
+<p><br />
+</p>
+</div>
+<div id="pivot-functions" class="slide section level1">
+<h1>Pivot Functions</h1>
+<div class="indented2" style="text-align:center;">
+<p><em><code>pivot_longer()</code></em><br />
+<img src="images/pivot_longer_566x212x256.png" /></p>
+<p><em><code>pivot_wider()</code></em><br />
+<img src="images/pivot_wider_674x336x256.png" /></p>
+</div>
+<p>More info and examples in the tidyr <a
+href="https://tidyr.tidyverse.org/articles/pivot.html" target="_blank"
+rel="noopener"><strong>Pivoting Vignette</strong></a></p>
+<p><br />
+</p>
+</div>
+<div id="group-and-summarize" class="slide section level1">
+<h1>Group and Summarize</h1>
+<table class="tbl_compact">
+<tbody>
+<tr>
+<td style="text-align:left;width: 20em; ">
+<strong>Step 1 (optional):</strong><br>group rows (i.e., change the unit
+of analysis)
+</td>
+<td style="text-align:left;">
+<tt>group_by()</tt>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20em; ">
+<strong>Step 2:</strong><br>Compute summaries for each group of rows
+</td>
+<td style="text-align:left;">
+Add summary columns with <tt>summarize()</tt><br>Aggregate functions
+available: <tt>n(), mean(), median(), sum(), sd(), IQR(), first(),</tt>
+etc.
+</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p>Example:</p>
+<div class="indented2 indented2r">
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="fu">head</span>(storms)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 13
+##   name   year month   day  hour   lat  long status       category  wind pressure
+##   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;           &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
+## 1 Amy    1975     6    27     0  27.5 -79   tropical de…       NA    25     1013
+## 2 Amy    1975     6    27     6  28.5 -79   tropical de…       NA    25     1013
+## 3 Amy    1975     6    27    12  29.5 -79   tropical de…       NA    25     1013
+## 4 Amy    1975     6    27    18  30.5 -79   tropical de…       NA    25     1013
+## 5 Amy    1975     6    28     0  31.5 -78.8 tropical de…       NA    25     1012
+## 6 Amy    1975     6    28     6  32.4 -78.7 tropical de…       NA    25     1012
+## # ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,
+## #   hurricane_force_diameter &lt;int&gt;</code></pre>
+</div>
+<p><br />
+</p>
+<p><em>For each month, how many storm observations are saved in the data
+frame</em></p>
+<div class="indented2 indented2r">
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>storms <span class="sc">|&gt;</span> </span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>  <span class="fu">select</span>(name, year, month, category) <span class="sc">|&gt;</span>    <span class="do">## select the columns we need</span></span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a>  <span class="fu">group_by</span>(month) <span class="sc">|&gt;</span>                        <span class="do">## group the rows by month</span></span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">num_storms =</span> <span class="fu">n</span>())               <span class="do">## for each group, report the count</span></span></code></pre></div>
+<pre><code>## # A tibble: 10 × 2
+##    month num_storms
+##    &lt;dbl&gt;      &lt;int&gt;
+##  1     1         70
+##  2     4         66
+##  3     5        201
+##  4     6        809
+##  5     7       1651
+##  6     8       4442
+##  7     9       7778
+##  8    10       3138
+##  9    11       1170
+## 10    12        212</code></pre>
+</div>
+<p><br />
+</p>
+</div>
+
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+</body>
+</html>
