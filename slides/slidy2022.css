@@ -246,12 +246,12 @@ span.exercise {
 div.cardcontainer {
   display:flex;
   flex-wrap:wrap;
-  justify-content: center;
+  justify-content: space-between;
   column-gap: 40px;
 }
 
 div.card {
-  max-width: 25%;
+  max-width: 30%;
   border:none;
 }
 
